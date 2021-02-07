@@ -46,22 +46,31 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="UVi-9H-5zV">
+                                                    <rect key="frame" x="33" y="33" width="50" height="50"/>
+                                                    <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </activityIndicatorView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="OCK-np-qC6" firstAttribute="leading" secondItem="sOh-td-Uzr" secondAttribute="trailing" constant="16" id="1cG-Q2-4vD"/>
+                                                <constraint firstItem="UVi-9H-5zV" firstAttribute="width" secondItem="sOh-td-Uzr" secondAttribute="width" multiplier="0.5" id="6fn-fe-San"/>
                                                 <constraint firstItem="sOh-td-Uzr" firstAttribute="leading" secondItem="aBX-cp-lwc" secondAttribute="leading" constant="8" id="91h-mO-xis"/>
                                                 <constraint firstAttribute="trailing" secondItem="8FT-Dk-Q1b" secondAttribute="trailing" constant="8" id="CgM-u4-vEA"/>
                                                 <constraint firstAttribute="trailing" secondItem="OCK-np-qC6" secondAttribute="trailing" constant="8" id="Mdy-gc-8qN"/>
+                                                <constraint firstItem="UVi-9H-5zV" firstAttribute="centerY" secondItem="sOh-td-Uzr" secondAttribute="centerY" id="O76-Nn-TBn"/>
                                                 <constraint firstItem="8FT-Dk-Q1b" firstAttribute="top" secondItem="OCK-np-qC6" secondAttribute="bottom" constant="24" id="WBr-VT-2Jb"/>
                                                 <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="8FT-Dk-Q1b" secondAttribute="bottom" constant="132" id="ZKJ-N6-UPX"/>
+                                                <constraint firstItem="UVi-9H-5zV" firstAttribute="height" secondItem="sOh-td-Uzr" secondAttribute="height" multiplier="0.5" id="cff-Zf-ZEc"/>
                                                 <constraint firstItem="sOh-td-Uzr" firstAttribute="top" secondItem="aBX-cp-lwc" secondAttribute="top" constant="8" id="ctb-py-WEj"/>
                                                 <constraint firstItem="OCK-np-qC6" firstAttribute="top" secondItem="aBX-cp-lwc" secondAttribute="top" constant="24" id="oRo-23-cnX"/>
                                                 <constraint firstAttribute="bottom" secondItem="sOh-td-Uzr" secondAttribute="bottom" constant="8" id="qoe-FJ-MRr"/>
+                                                <constraint firstItem="UVi-9H-5zV" firstAttribute="centerX" secondItem="sOh-td-Uzr" secondAttribute="centerX" id="rr5-E7-bqM"/>
                                                 <constraint firstItem="8FT-Dk-Q1b" firstAttribute="leading" secondItem="sOh-td-Uzr" secondAttribute="trailing" constant="16" id="ts3-Na-oxJ"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="createdLabel" destination="OCK-np-qC6" id="yvh-MC-3eO"/>
+                                            <outlet property="spinner" destination="UVi-9H-5zV" id="pYk-dk-GbI"/>
                                             <outlet property="updatedLabel" destination="8FT-Dk-Q1b" id="heD-Vh-7Hf"/>
                                             <outlet property="urlImageView" destination="sOh-td-Uzr" id="Xkj-qs-q6T"/>
                                         </connections>
