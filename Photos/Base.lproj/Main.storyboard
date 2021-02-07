@@ -73,6 +73,7 @@
                                             <outlet property="spinner" destination="UVi-9H-5zV" id="pYk-dk-GbI"/>
                                             <outlet property="updatedLabel" destination="8FT-Dk-Q1b" id="heD-Vh-7Hf"/>
                                             <outlet property="urlImageView" destination="sOh-td-Uzr" id="Xkj-qs-q6T"/>
+                                            <segue destination="Y3n-Jh-6vn" kind="show" identifier="tableViewToEditPhoto" id="lZ8-nw-v87"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -95,6 +96,38 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="710.14492753623199" y="69.642857142857139"/>
+        </scene>
+        <!--Photo Edit View Controller-->
+        <scene sceneID="xha-Mr-38M">
+            <objects>
+                <viewController id="Y3n-Jh-6vn" customClass="PhotoEditViewController" customModule="Photos" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="woe-9i-j10">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2rv-Q4-NQy">
+                                <rect key="frame" x="74" y="162" width="266" height="180"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="180" id="Vha-fP-lgm"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="XBJ-gE-Tdx"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="2rv-Q4-NQy" firstAttribute="leading" secondItem="XBJ-gE-Tdx" secondAttribute="leading" constant="74" id="dBh-52-qG9"/>
+                            <constraint firstItem="2rv-Q4-NQy" firstAttribute="top" secondItem="XBJ-gE-Tdx" secondAttribute="top" constant="74" id="ody-Nn-xly"/>
+                            <constraint firstItem="XBJ-gE-Tdx" firstAttribute="trailing" secondItem="2rv-Q4-NQy" secondAttribute="trailing" constant="74" id="pv2-ej-LhZ"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="u9e-CJ-rZR"/>
+                    <connections>
+                        <outlet property="imageView" destination="2rv-Q4-NQy" id="RAh-r9-WZe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rth-3e-5Gd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1623.1884057971015" y="69.642857142857139"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="xA5-FT-tri">

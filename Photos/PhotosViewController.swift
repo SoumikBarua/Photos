@@ -54,6 +54,7 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
         cell.imageUpdate(displaying: nil)
         cell.createdLabel.text = ""
         cell.updatedLabel.text = ""
+        cell.selectionStyle = .none
         
         return cell
     }
@@ -79,6 +80,23 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
                 cell.createdLabel.text = "Created \(photo.created)"
                 cell.updatedLabel.text = "Updated \(photo.updated)"
             }
+        }
+    }
+    
+    // MARK: - Segue navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "tableViewToEditPhoto":
+            if let selectedIndexPath = tableView.indexPathsForSelectedRows?.first {
+                
+                let photo = self.photos[selectedIndexPath.row]
+                
+                let photoEditViewController = segue.destination as! PhotoEditViewController
+                photoEditViewController.photo = photo
+                photoEditViewController.photoStore = photoStore
+            }
+        default:
+            preconditionFailure()
         }
     }
 
