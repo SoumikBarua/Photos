@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AlamofireImage
 
 class PhotosViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -19,6 +20,9 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
         // Set the data source & the delegate of the tableview to be displayed
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 114
+        
     
         fetchPhotosAndReloadTable()
     }
@@ -54,8 +58,20 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: "UITableViewCell")
-        cell.textLabel?.text = "cell # \(indexPath.row)"
+
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PhotosTableViewCell") as! PhotosTableViewCell
+        
+        // Extract the relevant data from the corresponding dictionary by index
+        let photoData = self.photos[indexPath.row]
+        let photoURL = URL(string: photoData["url"]!)
+        let dateCreated = photoData["created"]
+        let dateUpdated = photoData["updated"]
+        
+        cell.urlImageView.af.setImage(withURL: photoURL!)
+        cell.urlImageView.backgroundColor = UIColor.red
+        cell.createdLabel.text = "Created \(dateCreated!)"
+        cell.updatedLabel.text = "Updated \(dateUpdated!)"
+        
         return cell
     }
 
