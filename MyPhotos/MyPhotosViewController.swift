@@ -6,11 +6,24 @@
 //
 
 import UIKit
+import PhotoEditorSDK
 
-class MyPhotosViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class MyPhotosViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, PhotoEditViewControllerDelegate {
     
     var photos = [PhotoModel]()
     var photoStore: PhotoStore!
+    let configuration = Configuration { builder in
+        // Modify the appearance of the library
+        builder.theme = .light
+    }
+    var lastSelectedPhoto: PhotoModel! // To keep track of which corrsponding Photo Model's cell was selected/tapped for edit
+    let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMM d, y HH:mm:ss a"
+        return formatter
+    }()
+    
+    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -82,23 +95,40 @@ class MyPhotosViewController: UIViewController, UITableViewDataSource, UITableVi
         }
     }
     
-    // MARK: - Segue navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segue.identifier {
-        case "tableViewToEditPhoto":
-            if let selectedIndexPath = tableView.indexPathsForSelectedRows?.first {
-                
-                let photo = self.photos[selectedIndexPath.row]
-                
-                let myPhotosEditViewController = segue.destination as! MyPhotosEditViewController
-                myPhotosEditViewController.photo = photo
-                myPhotosEditViewController.photoStore = photoStore
-            }
-        default:
-            preconditionFailure()
-        }
-    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        lastSelectedPhoto = self.photos[indexPath.row]
+        let image = photoStore.imageStore.getImage(forKey: lastSelectedPhoto.url)!
+        let photo = Photo(image: image)
 
+        let photoEditViewController = PhotoEditViewController(photoAsset: photo, configuration: configuration)
+        photoEditViewController.delegate = self
+
+        //present(photoEditViewController, animated: true, completion: nil)
+        self.navigationController?.pushViewController(photoEditViewController, animated: true)
+    }
+    
+    
+    // MARK: - Photo edit delegate methods
+    func photoEditViewController(_ photoEditViewController: PhotoEditViewController, didSave image: UIImage, and data: Data) {
+        
+        print("Successfully saved")
+        photoStore.imageStore.setImage(image, forKey: lastSelectedPhoto.url)
+        
+        // Get the current time to modify updatedLabel
+        let currentDateTime = Date()
+        lastSelectedPhoto.updated = dateFormatter.string(from: currentDateTime)
+        
+        tableView.reloadData()
+    }
+    
+    func photoEditViewControllerDidFailToGeneratePhoto(_ photoEditViewController: PhotoEditViewController) {
+        print("Oops, something didn't quite work out!")
+    }
+    
+    func photoEditViewControllerDidCancel(_ photoEditViewController: PhotoEditViewController) {
+        print("Was simply dismissed")
+        return
+    }
 
 }
 

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -19,7 +19,6 @@
 		325629B625CF7733003EE5BF /* PhotoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325629B525CF7733003EE5BF /* PhotoStore.swift */; };
 		325629BB25CF8D3B003EE5BF /* ImageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325629BA25CF8D3B003EE5BF /* ImageStore.swift */; };
 		325629C025CF8FD7003EE5BF /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325629BF25CF8FD7003EE5BF /* Photo.swift */; };
-		325629C525CFD730003EE5BF /* MyPhotosEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325629C425CFD730003EE5BF /* MyPhotosEditViewController.swift */; };
 		32B3C84925D0FB47009D4247 /* pesdk_ios_license in Resources */ = {isa = PBXBuildFile; fileRef = 32B3C84825D0FB47009D4247 /* pesdk_ios_license */; };
 		5350AC3F2CD0ABD85E7EFFCE /* Pods_MyPhotos_MyPhotosUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3E80D159060BF476DBE19A0 /* Pods_MyPhotos_MyPhotosUITests.framework */; };
 		8B22B412857BB7180DE28A27 /* Pods_MyPhotos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B660E26E4A88C5C77558FDC /* Pods_MyPhotos.framework */; };
@@ -64,7 +63,6 @@
 		325629B525CF7733003EE5BF /* PhotoStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoStore.swift; sourceTree = "<group>"; };
 		325629BA25CF8D3B003EE5BF /* ImageStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageStore.swift; sourceTree = "<group>"; };
 		325629BF25CF8FD7003EE5BF /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
-		325629C425CFD730003EE5BF /* MyPhotosEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPhotosEditViewController.swift; sourceTree = "<group>"; };
 		32B3C84825D0FB47009D4247 /* pesdk_ios_license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pesdk_ios_license; sourceTree = "<group>"; };
 		45495EC5434BC680884AD4E3 /* Pods_MyPhotosTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyPhotosTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B8F370F5B7184189071FFA3 /* Pods-MyPhotos-MyPhotosUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyPhotos-MyPhotosUITests.release.xcconfig"; path = "Target Support Files/Pods-MyPhotos-MyPhotosUITests/Pods-MyPhotos-MyPhotosUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -162,7 +160,6 @@
 				325629B525CF7733003EE5BF /* PhotoStore.swift */,
 				325629BA25CF8D3B003EE5BF /* ImageStore.swift */,
 				325629BF25CF8FD7003EE5BF /* Photo.swift */,
-				325629C425CFD730003EE5BF /* MyPhotosEditViewController.swift */,
 				32B3C84825D0FB47009D4247 /* pesdk_ios_license */,
 			);
 			path = MyPhotos;
@@ -432,7 +429,6 @@
 				3256297025CEE9D2003EE5BF /* AppDelegate.swift in Sources */,
 				3256297225CEE9D2003EE5BF /* SceneDelegate.swift in Sources */,
 				325629BB25CF8D3B003EE5BF /* ImageStore.swift in Sources */,
-				325629C525CFD730003EE5BF /* MyPhotosEditViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
