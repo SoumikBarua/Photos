@@ -6,6 +6,7 @@ target 'MyPhotos' do
   use_frameworks!
 
   # Pods for MyPhotos
+  pod 'PhotoEditorSDK'
 
   target 'MyPhotosTests' do
     inherit! :search_paths
