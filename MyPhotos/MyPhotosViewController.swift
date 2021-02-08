@@ -16,8 +16,8 @@ class MyPhotosViewController: UIViewController, UITableViewDataSource, UITableVi
         // Modify the appearance of the library
         builder.theme = .light
     }
-    var lastSelectedPhoto: PhotoModel! // To keep track of which corrsponding Photo Model's cell was selected/tapped for edit
-    let dateFormatter: DateFormatter = {
+    var lastSelectedRow: Int! // Keeps track of which row number was tapped/selected for getting relevate data
+    let dateFormatter: DateFormatter = { // To reflect the change in the 'updated' field
         let formatter = DateFormatter()
         formatter.dateFormat = "MMM d, y HH:mm:ss a"
         return formatter
@@ -50,6 +50,8 @@ class MyPhotosViewController: UIViewController, UITableViewDataSource, UITableVi
             }
             self.tableView.reloadData()
         }
+        //navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Upload", style: .done, target: self, action: #selector(uploadPhotos))
+        //navigationItem.leftBarButtonItem?.isEnabled = false
     }
     
     
@@ -64,8 +66,8 @@ class MyPhotosViewController: UIViewController, UITableViewDataSource, UITableVi
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyPhotosTableViewCell") as! MyPhotosTableViewCell
         
         cell.imageUpdate(displaying: nil)
-        cell.createdLabel.text = ""
-        cell.updatedLabel.text = ""
+        cell.createdLabel.text = "Loading..."
+        cell.updatedLabel.text = "Loading..."
         cell.selectionStyle = .none
         
         return cell
@@ -80,13 +82,13 @@ class MyPhotosViewController: UIViewController, UITableViewDataSource, UITableVi
         // Let's download the image for this photo
         photoStore.fetchImages(for: photo) {
             (result) in
-            
+
             guard let photoIndex = self.photos.firstIndex(of: photo), case let .success(image) = result else {
                 return
             }
-            
+
             let photoIndexPath = IndexPath(item: photoIndex, section: 0)
-            
+
             if let cell = self.tableView.cellForRow(at: photoIndexPath) as? MyPhotosTableViewCell {
                 cell.imageUpdate(displaying: image)
                 cell.createdLabel.text = "Created \(photo.created)"
@@ -96,7 +98,8 @@ class MyPhotosViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        lastSelectedPhoto = self.photos[indexPath.row]
+        lastSelectedRow = indexPath.row
+        let lastSelectedPhoto = self.photos[lastSelectedRow]
         let image = photoStore.imageStore.getImage(forKey: lastSelectedPhoto.url)!
         let photo = Photo(image: image)
 
@@ -112,13 +115,46 @@ class MyPhotosViewController: UIViewController, UITableViewDataSource, UITableVi
     func photoEditViewController(_ photoEditViewController: PhotoEditViewController, didSave image: UIImage, and data: Data) {
         
         print("Successfully saved")
-        photoStore.imageStore.setImage(image, forKey: lastSelectedPhoto.url)
+        // Let's cache the edited image locally
+        let photo = photos[lastSelectedRow]
+        photoStore.imageStore.setImage(image, forKey: photo.url)
         
         // Get the current time to modify updatedLabel
         let currentDateTime = Date()
-        lastSelectedPhoto.updated = dateFormatter.string(from: currentDateTime)
+        let newDate = dateFormatter.string(from: currentDateTime)
+        photo.updated = newDate
         
-        tableView.reloadData()
+        let indexPath = IndexPath(row: lastSelectedRow, section: 0)
+        
+        // Instead of reloading the entire table view, just update the imageview & the label of the row/Photo that was edited
+        if let cell = tableView.cellForRow(at: indexPath) as? MyPhotosTableViewCell {
+            cell.imageUpdate(displaying: image)
+            cell.updatedLabel.text = "Updated \(newDate)"
+        }
+        
+        navigationController?.popViewController(animated: true)
+        
+        // Let's upload the image
+        photoStore.postUpload(editedImage: image, originalURL: photo.url) {
+            (result) in
+            
+            if result["status"] == "success" {
+                
+                let title = "Success"
+                let message = "Your edited image has been saved locally & successfully uploaded online!"
+                
+                let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+                
+                let dismissAction = UIAlertAction(title: "Dismiss", style: .cancel) {
+                    _ in
+                }
+                alertController.addAction(dismissAction)
+                
+                self.present(alertController, animated: true, completion: nil)
+                
+            }
+        }
+        
     }
     
     func photoEditViewControllerDidFailToGeneratePhoto(_ photoEditViewController: PhotoEditViewController) {
@@ -129,6 +165,9 @@ class MyPhotosViewController: UIViewController, UITableViewDataSource, UITableVi
         print("Was simply dismissed")
         return
     }
+    
+    
+    // @objc func uploadPhoto
 
 }
 
