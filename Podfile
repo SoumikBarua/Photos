@@ -6,7 +6,6 @@ target 'Photos' do
   use_frameworks!
 
   # Pods for Photos
-  pod "AlamofireImage"
 
   target 'PhotosTests' do
     inherit! :search_paths

@@ -194,7 +194,6 @@
 				3256296825CEE9D2003EE5BF /* Sources */,
 				3256296925CEE9D2003EE5BF /* Frameworks */,
 				3256296A25CEE9D2003EE5BF /* Resources */,
-				6440FD64B3CF08559760D946 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -232,7 +231,6 @@
 				3256298925CEE9D4003EE5BF /* Sources */,
 				3256298A25CEE9D4003EE5BF /* Frameworks */,
 				3256298B25CEE9D4003EE5BF /* Resources */,
-				0FF599B4C6746E50CBACF075 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -314,40 +312,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0FF599B4C6746E50CBACF075 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Photos-PhotosUITests/Pods-Photos-PhotosUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Photos-PhotosUITests/Pods-Photos-PhotosUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Photos-PhotosUITests/Pods-Photos-PhotosUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6440FD64B3CF08559760D946 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Photos/Pods-Photos-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Photos/Pods-Photos-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Photos/Pods-Photos-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		79CFB31DCB144F6A75D6E740 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
