@@ -9,7 +9,9 @@ This is my submission for the Eulerity 48-hour take-home coding challenge. The o
 Note: the yellow tint on the UI elements is a simulator bug!
 Here is a GIF demo of the app:
 
-![App demo](walkthrough.gif)
+![App demo with my own image editing code](walkthrough-image-manipulation-section-redone.gif)
+
+![App demo with 3rd-party image editing library](walkthrough.gif)
 
 
 ## License 

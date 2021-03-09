@@ -103,11 +103,23 @@ class MyPhotosViewController: UIViewController, UITableViewDataSource, UITableVi
         let image = photoStore.imageStore.getImage(forKey: lastSelectedPhoto.url)!
         let photo = Photo(image: image)
 
-        let photoEditViewController = PhotoEditViewController(photoAsset: photo, configuration: configuration)
-        photoEditViewController.delegate = self
-
-        //present(photoEditViewController, animated: true, completion: nil)
-        self.navigationController?.pushViewController(photoEditViewController, animated: true)
+//        let photoEditViewController = PhotoEditViewController(photoAsset: photo, configuration: configuration)
+//        photoEditViewController.delegate = self
+//
+//        //present(photoEditViewController, animated: true, completion: nil)
+//        self.navigationController?.pushViewController(photoEditViewController, animated: true)
+        
+        performSegue(withIdentifier: "myPhotosToMyPhotoEdit", sender: image)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "myPhotosToMyPhotoEdit":
+            let editViewController = segue.destination as! MyPhotoEditViewController
+            editViewController.passedOriginalImage = sender as? UIImage
+        default:
+            preconditionFailure("Unexpected segue identifier")
+        }
     }
     
     
